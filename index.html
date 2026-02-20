@@ -3,84 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Afriluxe Monte Carlo</title>
+<title>Afriluxe Party</title>
 
 <style>
 body{
     margin:0;
-    font-family:Georgia, serif;
-    background:#0b1d14;
+    font-family:Segoe UI, sans-serif;
+    background:#0f0f0f;
     color:white;
     display:flex;
 }
 
 /* Sidebar */
 .sidebar{
-    width:240px;
-    background:#07140d;
-    border-right:2px solid gold;
+    width:220px;
+    background:#151515;
+    border-right:3px solid #d60000;
     padding-top:30px;
 }
 .sidebar h2{
     text-align:center;
-    color:gold;
-    letter-spacing:3px;
+    color:#ff2e2e;
 }
 .sidebar button{
     width:100%;
     padding:15px;
     background:none;
     border:none;
-    color:white;
+    color:#ccc;
     text-align:left;
     cursor:pointer;
+    transition:0.3s;
 }
 .sidebar button:hover{
-    background:rgba(255,215,0,0.2);
+    background:#d60000;
+    color:white;
 }
 
 /* Main */
 .main{
     flex:1;
-    padding:30px;
+    padding:40px;
 }
+
 .topbar{
     display:flex;
     justify-content:space-between;
-    border-bottom:1px solid gold;
-    padding-bottom:15px;
+    border-bottom:1px solid #d60000;
+    padding-bottom:10px;
     margin-bottom:30px;
 }
-.section{display:none;}
+
+.section{display:none; animation:fadeIn 0.4s ease;}
 .active{display:block;}
 
-.panel{
-    background:#0f2a1c;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 0 20px rgba(255,215,0,0.2);
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
-/* Betting Chips */
-.chips{
-    margin-top:20px;
+.panel{
+    background:#1a1a1a;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 0 25px rgba(214,0,0,0.3);
+    text-align:center;
 }
+
+/* Chips */
 .chip{
     display:inline-block;
     width:60px;
     height:60px;
     border-radius:50%;
-    background:radial-gradient(circle,gold,#b8860b);
-    color:black;
-    font-weight:bold;
+    background:radial-gradient(circle,#ff2e2e,#a80000);
     line-height:60px;
     text-align:center;
     margin:10px;
     cursor:pointer;
+    font-weight:bold;
 }
-.selected{
-    box-shadow:0 0 20px gold;
-}
+.selected{box-shadow:0 0 20px #ff2e2e;}
 
 /* Cards */
 .card{
@@ -95,59 +98,55 @@ body{
     margin:10px;
     font-weight:bold;
 }
-.red{color:red;}
+.red{color:#d60000;}
 .black{color:black;}
 
-/* Wheel */
+/* Animations */
+@keyframes winPop{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.15);}
+    100%{transform:scale(1);}
+}
+.win{animation:winPop 0.4s ease;}
+
+@keyframes loseFlash{
+    0%{background:#1a1a1a;}
+    50%{background:#5c0000;}
+    100%{background:#1a1a1a;}
+}
+.lose{animation:loseFlash 0.4s ease;}
+
 #wheel{
-    width:250px;
-    height:250px;
+    width:220px;
+    height:220px;
     border-radius:50%;
-    border:8px solid gold;
-    margin:auto;
+    border:6px solid #ff2e2e;
+    margin:20px auto;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:22px;
-    background:conic-gradient(
-        green 0deg 10deg,
-        red 10deg 20deg,
-        black 20deg 30deg,
-        red 30deg 40deg,
-        black 40deg 50deg,
-        red 50deg 60deg,
-        black 60deg 70deg,
-        red 70deg 80deg,
-        black 80deg 90deg,
-        red 90deg 100deg,
-        black 100deg 110deg,
-        red 110deg 120deg,
-        black 120deg 130deg,
-        red 130deg 140deg,
-        black 140deg 150deg,
-        red 150deg 160deg,
-        black 160deg 170deg,
-        red 170deg 180deg,
-        black 180deg 190deg,
-        red 190deg 200deg,
-        black 200deg 210deg,
-        red 210deg 220deg,
-        black 220deg 230deg,
-        red 230deg 240deg,
-        black 240deg 250deg,
-        red 250deg 260deg,
-        black 260deg 270deg,
-        red 270deg 280deg,
-        black 280deg 290deg,
-        red 290deg 300deg,
-        black 300deg 310deg,
-        red 310deg 320deg,
-        black 320deg 330deg,
-        red 330deg 340deg,
-        black 340deg 350deg,
-        red 350deg 360deg
-    );
     transition:transform 4s cubic-bezier(.17,.67,.83,.67);
+    background:conic-gradient(green 0deg 10deg,#d60000 10deg 20deg,black 20deg 30deg,#d60000 30deg 40deg,black 40deg 50deg,#d60000 50deg 60deg,black 60deg 70deg,#d60000 70deg 80deg,black 80deg 90deg,#d60000 90deg 100deg,black 100deg 110deg,#d60000 110deg 120deg,black 120deg 130deg,#d60000 130deg 140deg,black 140deg 150deg,#d60000 150deg 160deg,black 160deg 170deg,#d60000 170deg 180deg,black 180deg 190deg,#d60000 190deg 200deg,black 200deg 210deg,#d60000 210deg 220deg,black 220deg 230deg,#d60000 230deg 240deg,black 240deg 250deg,#d60000 250deg 260deg,black 260deg 270deg,#d60000 270deg 280deg,black 280deg 290deg,#d60000 290deg 300deg,black 300deg 310deg,#d60000 310deg 320deg,black 320deg 330deg,#d60000 330deg 340deg,black 340deg 350deg,#d60000 350deg 360deg);
+}
+
+#plinkoBoard{
+    position:relative;
+    width:300px;
+    height:400px;
+    margin:20px auto;
+    background:#111;
+    border-radius:12px;
+    overflow:hidden;
+}
+#ball{
+    width:15px;
+    height:15px;
+    background:#ff2e2e;
+    border-radius:50%;
+    position:absolute;
+    top:0;
+    left:142px;
+    display:none;
 }
 </style>
 </head>
@@ -156,97 +155,58 @@ body{
 
 <div class="sidebar">
 <h2>AFRILUXE</h2>
-<button onclick="show('lobby')">🏛 Lobby</button>
-<button onclick="show('blackjack')">🃏 Blackjack</button>
-<button onclick="show('roulette')">🎡 Roulette</button>
+<button onclick="show('blackjack')">Blackjack</button>
+<button onclick="show('roulette')">Roulette</button>
+<button onclick="show('plinko')">Plinko</button>
 </div>
 
 <div class="main">
 
 <div class="topbar">
 <div>Chips: <span id="chips">1000</span></div>
-<div>VIP: Monte Carlo Elite</div>
-<div>🌍 Online: <span id="online">2431</span></div>
-</div>
-
-<!-- Lobby -->
-<div id="lobby" class="section active">
-<div class="panel">
-<h2>Welcome to Afriluxe Monte Carlo</h2>
-<p>Elegance. Prestige. Fortune.</p>
-</div>
 </div>
 
 <!-- Blackjack -->
-<div id="blackjack" class="section">
+<div id="blackjack" class="section active">
 <div class="panel">
 <h2>Blackjack</h2>
-
-<h3>Dealer</h3>
-<div id="dealerCards"></div>
-
-<h3>Player</h3>
-<div id="playerCards"></div>
-
-<p id="bjMessage"></p>
-
-<div class="chips">
-<div class="chip" onclick="selectBet(10)">10</div>
 <div class="chip" onclick="selectBet(50)">50</div>
-<div class="chip" onclick="selectBet(100)">100</div>
-<div class="chip" onclick="selectBet(500)">500</div>
-</div>
-
-<button onclick="startBlackjack()">Deal</button>
-<button onclick="hit()">Hit</button>
-<button onclick="stand()">Stand</button>
-
+<button onclick="blackjack()">Play</button>
+<p id="bjResult"></p>
 </div>
 </div>
 
 <!-- Roulette -->
 <div id="roulette" class="section">
 <div class="panel">
-<h2>European Roulette</h2>
-
-<div class="chips">
-<div class="chip" onclick="selectBet(10)">10</div>
+<h2>Roulette</h2>
 <div class="chip" onclick="selectBet(50)">50</div>
-<div class="chip" onclick="selectBet(100)">100</div>
-<div class="chip" onclick="selectBet(500)">500</div>
+<button onclick="spin()">Spin</button>
+<div id="wheel">0</div>
+<p id="rResult"></p>
+</div>
 </div>
 
-<button onclick="betColor('red')">Bet Red</button>
-<button onclick="betColor('black')">Bet Black</button>
-
-<br><br>
-
-<input type="number" id="numberBet" min="0" max="36">
-<button onclick="betNumber()">Bet Number</button>
-
-<br><br>
-
-<div id="wheel">0</div>
-<p id="rouletteMessage"></p>
-<button onclick="spinWheel()">SPIN</button>
-
+<!-- Plinko -->
+<div id="plinko" class="section">
+<div class="panel">
+<h2>Plinko Party 🎯</h2>
+<div class="chip" onclick="selectBet(50)">50</div>
+<button onclick="dropBall()">Drop Ball</button>
+<div id="plinkoBoard">
+<div id="ball"></div>
+</div>
+<p id="plinkoResult"></p>
 </div>
 </div>
 
 </div>
 
 <script>
-let chips=localStorage.getItem("chips")?parseInt(localStorage.getItem("chips")):1000;
-let currentBet=0;
-let deck=[],playerHand=[],dealerHand=[],gameActive=false;
-let rouletteBetType=null,rouletteBetValue=null;
-
-const redNumbers=[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
-
-function updateChips(){
-    document.getElementById("chips").innerText=chips;
-    localStorage.setItem("chips",chips);
-}
+let chips=1000;
+let bet=0;
+const winSound=new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+const loseSound=new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
 
 function show(id){
     document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
@@ -254,174 +214,54 @@ function show(id){
 }
 
 function selectBet(amount){
-    currentBet=amount;
+    bet=amount;
     document.querySelectorAll(".chip").forEach(c=>c.classList.remove("selected"));
     event.target.classList.add("selected");
 }
 
-/* ---------- BLACKJACK ---------- */
-
-function createDeck(){
-    const suits=["♠","♥","♦","♣"];
-    const ranks=["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
-    deck=[];
-    for(let suit of suits){
-        for(let rank of ranks){
-            deck.push({rank,suit});
-        }
-    }
-    deck.sort(()=>Math.random()-0.5);
+function blackjack(){
+    let win=Math.random()>0.5;
+    if(win){chips+=bet; winSound.play(); flash("win");}
+    else{chips-=bet; loseSound.play(); flash("lose");}
+    document.getElementById("chips").innerText=chips;
+    document.getElementById("bjResult").innerText=win?"You Win!":"You Lose!";
 }
 
-function cardValue(card){
-    if(["J","Q","K"].includes(card.rank)) return 10;
-    if(card.rank==="A") return 11;
-    return parseInt(card.rank);
-}
-
-function handValue(hand){
-    let value=0, aces=0;
-    for(let card of hand){
-        value+=cardValue(card);
-        if(card.rank==="A") aces++;
-    }
-    while(value>21 && aces>0){
-        value-=10;
-        aces--;
-    }
-    return value;
-}
-
-function createCardHTML(card){
-    let color=(card.suit==="♥"||card.suit==="♦")?"red":"black";
-    return `<div class="card ${color}">
-        <div>${card.rank}${card.suit}</div>
-        <div style="align-self:flex-end">${card.rank}${card.suit}</div>
-    </div>`;
-}
-
-function renderHands(){
-    document.getElementById("playerCards").innerHTML=
-        playerHand.map(c=>createCardHTML(c)).join("");
-    document.getElementById("dealerCards").innerHTML=
-        dealerHand.map(c=>createCardHTML(c)).join("");
-}
-
-function startBlackjack(){
-    if(currentBet===0) return alert("Select bet first");
-    if(currentBet>chips) return alert("Not enough chips");
-
-    createDeck();
-    playerHand=[deck.pop(),deck.pop()];
-    dealerHand=[deck.pop(),deck.pop()];
-    gameActive=true;
-    renderHands();
-    document.getElementById("bjMessage").innerText="";
-}
-
-function hit(){
-    if(!gameActive) return;
-    playerHand.push(deck.pop());
-    renderHands();
-    if(handValue(playerHand)>21) endBlackjack();
-}
-
-function stand(){
-    if(!gameActive) return;
-    while(handValue(dealerHand)<17){
-        dealerHand.push(deck.pop());
-    }
-    endBlackjack();
-}
-
-function endBlackjack(){
-    gameActive=false;
-    let p=handValue(playerHand);
-    let d=handValue(dealerHand);
-    let msg="";
-    if(p>21){
-        chips-=currentBet;
-        msg="Bust! Dealer Wins.";
-    }else if(d>21 || p>d){
-        chips+=currentBet;
-        msg="You Win!";
-    }else if(p<d){
-        chips-=currentBet;
-        msg="Dealer Wins.";
-    }else{
-        msg="Push.";
-    }
-    document.getElementById("bjMessage").innerText=
-        msg+" (You: "+p+" Dealer: "+d+")";
-    updateChips();
-}
-
-/* ---------- ROULETTE ---------- */
-
-function betColor(color){
-    if(currentBet===0) return alert("Select bet first");
-    rouletteBetType="color";
-    rouletteBetValue=color;
-    document.getElementById("rouletteMessage").innerText=
-        "Betting "+currentBet+" on "+color;
-}
-
-function betNumber(){
-    if(currentBet===0) return alert("Select bet first");
-    let num=parseInt(document.getElementById("numberBet").value);
-    if(isNaN(num)||num<0||num>36) return alert("Enter 0-36");
-    rouletteBetType="number";
-    rouletteBetValue=num;
-    document.getElementById("rouletteMessage").innerText=
-        "Betting "+currentBet+" on "+num;
-}
-
-function spinWheel(){
-    if(!rouletteBetType) return alert("Place bet first");
-    if(currentBet>chips) return alert("Not enough chips");
-
+function spin(){
     let result=Math.floor(Math.random()*37);
-    let rotation=360*6+(result*9.7);
-    document.getElementById("wheel").style.transform=
-        "rotate("+rotation+"deg)";
-
-    setTimeout(()=>{
-        let message="Result: "+result;
-        if(rouletteBetType==="color"){
-            let resultColor=
-                redNumbers.includes(result)?"red":
-                (result===0?"green":"black");
-
-            if(resultColor===rouletteBetValue){
-                chips+=currentBet;
-                message+=" — YOU WIN!";
-            }else{
-                chips-=currentBet;
-                message+=" — You lose.";
-            }
-        }
-        if(rouletteBetType==="number"){
-            if(result===rouletteBetValue){
-                chips+=currentBet*35;
-                message+=" — JACKPOT!";
-            }else{
-                chips-=currentBet;
-                message+=" — You lose.";
-            }
-        }
-        document.getElementById("rouletteMessage").innerText=message;
-        document.getElementById("wheel").innerText=result;
-        updateChips();
-        rouletteBetType=null;
-    },4000);
+    document.getElementById("wheel").style.transform="rotate("+(360*5+result*9)+"deg)";
+    setTimeout(()=>{document.getElementById("wheel").innerText=result;},4000);
 }
 
-setInterval(()=>{
-    document.getElementById("online").innerText=
-        2400+Math.floor(Math.random()*300);
-},3000);
+function dropBall(){
+    const ball=document.getElementById("ball");
+    ball.style.display="block";
+    let x=142,y=0;
+    let interval=setInterval(()=>{
+        y+=10;
+        x+=Math.random()>0.5?10:-10;
+        if(x<0)x=0;
+        if(x>285)x=285;
+        ball.style.top=y+"px";
+        ball.style.left=x+"px";
+        if(y>=360){
+            clearInterval(interval);
+            let multiplier=(x>120&&x<180)?2:1;
+            let win=bet*multiplier;
+            chips+=win;
+            document.getElementById("chips").innerText=chips;
+            document.getElementById("plinkoResult").innerText="Won "+win+" chips!";
+            winSound.play();
+            setTimeout(()=>{ball.style.display="none";ball.style.top="0px";ball.style.left="142px";},800);
+        }
+    },60);
+}
 
-updateChips();
+function flash(type){
+    const panel=document.querySelector(".panel");
+    panel.classList.add(type);
+    setTimeout(()=>panel.classList.remove(type),400);
+}
 </script>
 
 </body>
