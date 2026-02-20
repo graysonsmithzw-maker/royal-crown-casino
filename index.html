@@ -3,324 +3,245 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal Crown Casino</title>
+<title>Royal Crown Casino V2</title>
 
 <style>
 body{
     margin:0;
     font-family:Arial;
-    background:#0a0a0a;
+    background:#0d0d0d;
     color:white;
-}
-header{
-    background:#111;
-    padding:15px;
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:2px solid red;
 }
-.logo{color:red;font-weight:bold;font-size:20px;}
-.stats{font-size:13px;}
 
-nav{
-    display:flex;
-    justify-content:center;
+/* SIDEBAR */
+.sidebar{
+    width:220px;
     background:#111;
+    height:100vh;
+    padding-top:20px;
+    border-right:2px solid red;
 }
-nav button{
+.sidebar h2{
+    text-align:center;
+    color:red;
+}
+.sidebar button{
+    width:100%;
+    padding:15px;
     background:none;
     border:none;
     color:white;
-    padding:15px 20px;
+    text-align:left;
     cursor:pointer;
 }
-nav button:hover{background:red;}
+.sidebar button:hover{
+    background:red;
+}
 
-.section{display:none;padding:25px;text-align:center;}
+/* MAIN AREA */
+.main{
+    flex:1;
+    padding:20px;
+}
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid red;
+    padding-bottom:10px;
+}
+.section{display:none;}
 .active{display:block;}
 
 button{
-    padding:8px 15px;
     background:red;
     border:none;
+    padding:8px 15px;
     border-radius:5px;
     color:white;
     cursor:pointer;
 }
-button:hover{opacity:0.8;}
-
 input{padding:5px;margin:5px;}
 
-#wheel{
-    width:150px;
-    height:150px;
+.chip{
+    display:inline-block;
+    width:50px;
+    height:50px;
     border-radius:50%;
-    border:8px solid red;
+    background:red;
+    border:3px solid white;
+    line-height:50px;
+    text-align:center;
+    cursor:pointer;
+    margin:5px;
+}
+.chip:hover{transform:scale(1.1);}
+
+/* Roulette Wheel */
+#wheel{
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    border:10px solid red;
     margin:20px auto;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:24px;
+    font-size:30px;
     background:black;
-    transition:transform 2s ease-out;
+    transition:transform 3s ease-out;
 }
 
-.chip{
-    display:inline-block;
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:red;
-    border:3px solid white;
-    margin:5px;
-    animation:pop 0.3s ease;
-}
-@keyframes pop{
-    from{transform:scale(0);}
-    to{transform:scale(1);}
+/* Slot */
+.slot{
+    font-size:50px;
+    margin:20px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="logo">♠ Royal Crown</div>
-<div class="stats">
-User: <span id="username">Guest</span> |
-Chips: <span id="chips">1000</span> |
-VIP: <span id="vip">Bronze</span> |
-🌍 Online: <span id="online">2431</span>
+<div class="sidebar">
+<h2>♠ Casino</h2>
+<button onclick="show('dashboard')">🏠 Dashboard</button>
+<button onclick="show('blackjack')">🃏 Blackjack</button>
+<button onclick="show('roulette')">🎡 Roulette</button>
+<button onclick="show('slots')">🎰 Slots</button>
+<button onclick="show('poker')">🃏 Poker</button>
+<button onclick="show('stats')">📊 Stats</button>
 </div>
-</header>
 
-<nav>
-<button onclick="show('home')">Home</button>
-<button onclick="show('blackjack')">Blackjack</button>
-<button onclick="show('roulette')">Roulette</button>
-<button onclick="show('poker')">Poker</button>
-<button onclick="show('stats')">Stats</button>
-<button onclick="show('account')">Account</button>
-</nav>
+<div class="main">
 
-<div id="home" class="section active">
+<div class="topbar">
+<div>User: <span id="username">Guest</span></div>
+<div>Chips: <span id="chips">1000</span></div>
+<div>VIP: <span id="vip">Bronze</span></div>
+<div>🌍 Online: <span id="online">2431</span></div>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard" class="section active">
 <h2>Welcome to Royal Crown</h2>
-<p>Black. Red. Power.</p>
-<div id="chipArea"></div>
+<p>Premium Casino Experience</p>
 </div>
 
+<!-- Blackjack -->
 <div id="blackjack" class="section">
-<h2>🃏 Blackjack</h2>
-Bet <input type="number" id="bjBet" value="50">
-<button onclick="startBJ()">Deal</button>
-<button onclick="hitBJ()">Hit</button>
-<button onclick="standBJ()">Stand</button>
+<h2>Blackjack</h2>
 <div id="bjArea"></div>
-<h3 id="bjResult"></h3>
+<button onclick="playBJ()">Play Hand (50 Chips)</button>
 </div>
 
+<!-- Roulette -->
 <div id="roulette" class="section">
-<h2>🎡 Roulette</h2>
-Bet <input type="number" id="rBet" value="50"><br>
-Number (0-36) <input type="number" id="rNum" min="0" max="36">
-<button onclick="betNumber()">Bet Number</button><br>
-<button onclick="betColor('red')">Red</button>
-<button onclick="betColor('black')">Black</button>
+<h2>Roulette</h2>
 <div id="wheel">🎡</div>
-<h3 id="rResult"></h3>
+<button onclick="spinRoulette()">Spin (50 Chips)</button>
+<div id="rouletteResult"></div>
 </div>
 
+<!-- Slots -->
+<div id="slots" class="section">
+<h2>Slots</h2>
+<div class="slot" id="slotDisplay">🍒 🍋 🍊</div>
+<button onclick="spinSlots()">Spin (50 Chips)</button>
+<div id="slotResult"></div>
+</div>
+
+<!-- Poker -->
 <div id="poker" class="section">
-<h2>🃏 Poker</h2>
-Bet <input type="number" id="pBet" value="100">
-<button onclick="playPoker()">Deal</button>
-<h3 id="pResult"></h3>
+<h2>Poker</h2>
+<button onclick="playPoker()">Deal (100 Chips)</button>
+<div id="pokerResult"></div>
 </div>
 
+<!-- Stats -->
 <div id="stats" class="section">
-<h2>📊 Player Stats</h2>
-<p>Total Wins: <span id="wins">0</span></p>
-<p>Total Losses: <span id="losses">0</span></p>
+<h2>Player Stats</h2>
+<p>Wins: <span id="wins">0</span></p>
+<p>Losses: <span id="losses">0</span></p>
 <p>Games Played: <span id="games">0</span></p>
 </div>
 
-<div id="account" class="section">
-<h2>🔐 Account</h2>
-<input type="text" id="newUser" placeholder="Enter username">
-<button onclick="login()">Login</button>
 </div>
 
 <script>
-let chips = localStorage.getItem("chips") ? parseInt(localStorage.getItem("chips")) : 1000;
-let username = localStorage.getItem("username") || "Guest";
-let stats = JSON.parse(localStorage.getItem("stats")) || {wins:0,losses:0,games:0};
+let chips=localStorage.getItem("chips")?parseInt(localStorage.getItem("chips")):1000;
+let stats=JSON.parse(localStorage.getItem("stats"))||{wins:0,losses:0,games:0};
 
-document.getElementById("username").innerText=username;
-
-function updateChips(){
-    localStorage.setItem("chips",chips);
+function update(){
     document.getElementById("chips").innerText=chips;
-    updateVIP();
+    document.getElementById("wins").innerText=stats.wins;
+    document.getElementById("losses").innerText=stats.losses;
+    document.getElementById("games").innerText=stats.games;
+    localStorage.setItem("chips",chips);
+    localStorage.setItem("stats",JSON.stringify(stats));
 }
-function updateVIP(){
-    let vip="Bronze";
-    if(chips>5000) vip="Silver";
-    if(chips>15000) vip="Gold";
-    if(chips>30000) vip="Diamond";
-    document.getElementById("vip").innerText=vip;
-}
+
 function show(id){
     document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
     document.getElementById(id).classList.add("active");
 }
-function login(){
-    let newUser=document.getElementById("newUser").value;
-    if(newUser){
-        username=newUser;
-        localStorage.setItem("username",username);
-        document.getElementById("username").innerText=username;
-        alert("Welcome "+username);
-    }
-}
-function updateStats(win){
+
+function record(win){
     stats.games++;
-    if(win) stats.wins++; else stats.losses++;
-    localStorage.setItem("stats",JSON.stringify(stats));
-    document.getElementById("wins").innerText=stats.wins;
-    document.getElementById("losses").innerText=stats.losses;
-    document.getElementById("games").innerText=stats.games;
-}
-function showChips(){
-    let chip=document.createElement("div");
-    chip.className="chip";
-    document.getElementById("chipArea").appendChild(chip);
-    setTimeout(()=>chip.remove(),1000);
+    if(win){stats.wins++;}else{stats.losses++;}
 }
 
-/* Blackjack */
-let deck=[],player=[],dealer=[],bjBet=0;
-function createDeck(){
-    const suits=["♥","♦","♣","♠"];
-    const ranks=["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
-    deck=[];
-    for(let s of suits){for(let r of ranks){deck.push({r,s});}}
-    deck.sort(()=>Math.random()-0.5);
-}
-function value(hand){
-    let v=0,aces=0;
-    for(let c of hand){
-        if(["J","Q","K"].includes(c.r)) v+=10;
-        else if(c.r==="A"){v+=11;aces++;}
-        else v+=parseInt(c.r);
-    }
-    while(v>21&&aces>0){v-=10;aces--;}
-    return v;
-}
-function startBJ(){
-    bjBet=parseInt(document.getElementById("bjBet").value);
-    if(bjBet>chips||bjBet<=0){alert("Invalid bet");return;}
-    createDeck();
-    player=[deck.pop(),deck.pop()];
-    dealer=[deck.pop(),deck.pop()];
-    renderBJ();
-}
-function renderBJ(){
-    document.getElementById("bjArea").innerText=
-    "You: "+value(player)+" | Dealer: "+value(dealer);
-}
-function hitBJ(){
-    player.push(deck.pop());
-    renderBJ();
-    if(value(player)>21){
-        chips-=bjBet;
-        updateStats(false);
-        updateChips();
-    }
-}
-function standBJ(){
-    while(value(dealer)<17) dealer.push(deck.pop());
-    if(value(player)>value(dealer)||value(dealer)>21){
-        chips+=bjBet; showChips(); updateStats(true);
-    } else {chips-=bjBet; updateStats(false);}
-    updateChips(); renderBJ();
+function playBJ(){
+    if(chips<50)return alert("Not enough chips");
+    let player=Math.floor(Math.random()*21)+1;
+    let dealer=Math.floor(Math.random()*21)+1;
+    stats.games++;
+    if(player>dealer){chips+=50;stats.wins++;}
+    else{chips-=50;stats.losses++;}
+    document.getElementById("bjArea").innerText="You: "+player+" Dealer: "+dealer;
+    update();
 }
 
-/* Roulette */
-function spinAnimation(result){
-    let wheel=document.getElementById("wheel");
-    wheel.style.transform="rotate("+ (360*5 + result*10)+"deg)";
-    setTimeout(()=>{wheel.innerText=result;},2000);
-}
-function betNumber(){
-    let bet=parseInt(document.getElementById("rBet").value);
-    let chosen=parseInt(document.getElementById("rNum").value);
-    if(bet>chips||bet<=0||chosen<0||chosen>36){alert("Invalid bet");return;}
+function spinRoulette(){
+    if(chips<50)return alert("Not enough chips");
     let result=Math.floor(Math.random()*37);
-    spinAnimation(result);
+    document.getElementById("wheel").style.transform="rotate("+(360*6+result*10)+"deg)";
     setTimeout(()=>{
-        if(result===chosen){chips+=bet*35; showChips(); updateStats(true);}
-        else{chips-=bet; updateStats(false);}
-        updateChips();
-    },2000);
-}
-function betColor(color){
-    let bet=parseInt(document.getElementById("rBet").value);
-    if(bet>chips||bet<=0){alert("Invalid bet");return;}
-    let result=Math.floor(Math.random()*37);
-    spinAnimation(result);
-    let resultColor=result%2===0?"black":"red";
-    setTimeout(()=>{
-        if(resultColor===color){chips+=bet; showChips(); updateStats(true);}
-        else{chips-=bet; updateStats(false);}
-        updateChips();
-    },2000);
+        if(result%2===0){chips+=50;stats.wins++;}
+        else{chips-=50;stats.losses++;}
+        stats.games++;
+        document.getElementById("rouletteResult").innerText="Number: "+result;
+        update();
+    },3000);
 }
 
-/* Poker with ranking */
-function getCard(){
-    const suits=["H","D","C","S"];
-    const ranks=[2,3,4,5,6,7,8,9,10,11,12,13,14];
-    return {rank:ranks[Math.floor(Math.random()*13)],
-            suit:suits[Math.floor(Math.random()*4)]};
+function spinSlots(){
+    if(chips<50)return alert("Not enough chips");
+    const symbols=["🍒","🍋","🍊","💎","7️⃣"];
+    let s1=symbols[Math.floor(Math.random()*5)];
+    let s2=symbols[Math.floor(Math.random()*5)];
+    let s3=symbols[Math.floor(Math.random()*5)];
+    document.getElementById("slotDisplay").innerText=s1+" "+s2+" "+s3;
+    stats.games++;
+    if(s1===s2&&s2===s3){chips+=150;stats.wins++;}
+    else{chips-=50;stats.losses++;}
+    update();
 }
-function evaluate(hand){
-    let ranks=hand.map(c=>c.rank).sort((a,b)=>a-b);
-    let suits=hand.map(c=>c.suit);
-    let flush=suits.every(s=>s===suits[0]);
-    let straight=ranks.every((r,i)=>i===0||r===ranks[i-1]+1);
-    let count={}; ranks.forEach(r=>count[r]=(count[r]||0)+1);
-    let vals=Object.values(count).sort((a,b)=>b-a);
-    if(straight&&flush) return 8;
-    if(vals[0]===4) return 7;
-    if(vals[0]===3&&vals[1]===2) return 6;
-    if(flush) return 5;
-    if(straight) return 4;
-    if(vals[0]===3) return 3;
-    if(vals[0]===2&&vals[1]===2) return 2;
-    if(vals[0]===2) return 1;
-    return 0;
-}
+
 function playPoker(){
-    let bet=parseInt(document.getElementById("pBet").value);
-    if(bet>chips||bet<=0){alert("Invalid bet");return;}
-    let player=[getCard(),getCard(),getCard(),getCard(),getCard()];
-    let dealer=[getCard(),getCard(),getCard(),getCard(),getCard()];
-    if(evaluate(player)>evaluate(dealer)){
-        chips+=bet; showChips(); updateStats(true);
-    } else {chips-=bet; updateStats(false);}
-    updateChips();
+    if(chips<100)return alert("Not enough chips");
+    let p=Math.random();
+    stats.games++;
+    if(p>0.5){chips+=100;stats.wins++;}
+    else{chips-=100;stats.losses++;}
+    document.getElementById("pokerResult").innerText="Hand Result Calculated";
+    update();
 }
 
-/* Live counter */
 setInterval(()=>{
-    document.getElementById("online").innerText=
-    2400+Math.floor(Math.random()*300);
+    document.getElementById("online").innerText=2400+Math.floor(Math.random()*300);
 },3000);
 
-updateChips();
-updateVIP();
-updateStats(false);
+update();
 </script>
 
 </body>
