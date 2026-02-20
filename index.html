@@ -3,28 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal Crown Casino V2</title>
+<title>Afriluxe Monte Carlo</title>
 
 <style>
 body{
     margin:0;
-    font-family:Arial;
-    background:#0d0d0d;
+    font-family:Georgia, serif;
+    background:#0b1d14;
     color:white;
     display:flex;
 }
 
-/* SIDEBAR */
+/* Sidebar */
 .sidebar{
-    width:220px;
-    background:#111;
-    height:100vh;
-    padding-top:20px;
-    border-right:2px solid red;
+    width:240px;
+    background:#07140d;
+    border-right:2px solid gold;
+    padding-top:30px;
 }
 .sidebar h2{
     text-align:center;
-    color:red;
+    color:gold;
+    letter-spacing:3px;
 }
 .sidebar button{
     width:100%;
@@ -36,66 +36,118 @@ body{
     cursor:pointer;
 }
 .sidebar button:hover{
-    background:red;
+    background:rgba(255,215,0,0.2);
 }
 
-/* MAIN AREA */
+/* Main */
 .main{
     flex:1;
-    padding:20px;
+    padding:30px;
 }
 .topbar{
     display:flex;
     justify-content:space-between;
-    border-bottom:1px solid red;
-    padding-bottom:10px;
+    border-bottom:1px solid gold;
+    padding-bottom:15px;
+    margin-bottom:30px;
 }
 .section{display:none;}
 .active{display:block;}
 
-button{
-    background:red;
-    border:none;
-    padding:8px 15px;
-    border-radius:5px;
-    color:white;
-    cursor:pointer;
+.panel{
+    background:#0f2a1c;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 20px rgba(255,215,0,0.2);
 }
-input{padding:5px;margin:5px;}
 
+/* Betting Chips */
+.chips{
+    margin-top:20px;
+}
 .chip{
     display:inline-block;
-    width:50px;
-    height:50px;
+    width:60px;
+    height:60px;
     border-radius:50%;
-    background:red;
-    border:3px solid white;
-    line-height:50px;
+    background:radial-gradient(circle,gold,#b8860b);
+    color:black;
+    font-weight:bold;
+    line-height:60px;
     text-align:center;
+    margin:10px;
     cursor:pointer;
-    margin:5px;
 }
-.chip:hover{transform:scale(1.1);}
+.selected{
+    box-shadow:0 0 20px gold;
+}
 
-/* Roulette Wheel */
+/* Cards */
+.card{
+    width:80px;
+    height:120px;
+    background:white;
+    border-radius:8px;
+    display:inline-flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:8px;
+    margin:10px;
+    font-weight:bold;
+}
+.red{color:red;}
+.black{color:black;}
+
+/* Wheel */
 #wheel{
-    width:200px;
-    height:200px;
+    width:250px;
+    height:250px;
     border-radius:50%;
-    border:10px solid red;
-    margin:20px auto;
+    border:8px solid gold;
+    margin:auto;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:30px;
-    background:black;
-    transition:transform 3s ease-out;
-}
-
-/* Slot */
-.slot{
-    font-size:50px;
-    margin:20px;
+    font-size:22px;
+    background:conic-gradient(
+        green 0deg 10deg,
+        red 10deg 20deg,
+        black 20deg 30deg,
+        red 30deg 40deg,
+        black 40deg 50deg,
+        red 50deg 60deg,
+        black 60deg 70deg,
+        red 70deg 80deg,
+        black 80deg 90deg,
+        red 90deg 100deg,
+        black 100deg 110deg,
+        red 110deg 120deg,
+        black 120deg 130deg,
+        red 130deg 140deg,
+        black 140deg 150deg,
+        red 150deg 160deg,
+        black 160deg 170deg,
+        red 170deg 180deg,
+        black 180deg 190deg,
+        red 190deg 200deg,
+        black 200deg 210deg,
+        red 210deg 220deg,
+        black 220deg 230deg,
+        red 230deg 240deg,
+        black 240deg 250deg,
+        red 250deg 260deg,
+        black 260deg 270deg,
+        red 270deg 280deg,
+        black 280deg 290deg,
+        red 290deg 300deg,
+        black 300deg 310deg,
+        red 310deg 320deg,
+        black 320deg 330deg,
+        red 330deg 340deg,
+        black 340deg 350deg,
+        red 350deg 360deg
+    );
+    transition:transform 4s cubic-bezier(.17,.67,.83,.67);
 }
 </style>
 </head>
@@ -103,81 +155,97 @@ input{padding:5px;margin:5px;}
 <body>
 
 <div class="sidebar">
-<h2>♠ Casino</h2>
-<button onclick="show('dashboard')">🏠 Dashboard</button>
+<h2>AFRILUXE</h2>
+<button onclick="show('lobby')">🏛 Lobby</button>
 <button onclick="show('blackjack')">🃏 Blackjack</button>
 <button onclick="show('roulette')">🎡 Roulette</button>
-<button onclick="show('slots')">🎰 Slots</button>
-<button onclick="show('poker')">🃏 Poker</button>
-<button onclick="show('stats')">📊 Stats</button>
 </div>
 
 <div class="main">
 
 <div class="topbar">
-<div>User: <span id="username">Guest</span></div>
 <div>Chips: <span id="chips">1000</span></div>
-<div>VIP: <span id="vip">Bronze</span></div>
+<div>VIP: Monte Carlo Elite</div>
 <div>🌍 Online: <span id="online">2431</span></div>
 </div>
 
-<!-- Dashboard -->
-<div id="dashboard" class="section active">
-<h2>Welcome to Royal Crown</h2>
-<p>Premium Casino Experience</p>
+<!-- Lobby -->
+<div id="lobby" class="section active">
+<div class="panel">
+<h2>Welcome to Afriluxe Monte Carlo</h2>
+<p>Elegance. Prestige. Fortune.</p>
+</div>
 </div>
 
 <!-- Blackjack -->
 <div id="blackjack" class="section">
+<div class="panel">
 <h2>Blackjack</h2>
-<div id="bjArea"></div>
-<button onclick="playBJ()">Play Hand (50 Chips)</button>
+
+<h3>Dealer</h3>
+<div id="dealerCards"></div>
+
+<h3>Player</h3>
+<div id="playerCards"></div>
+
+<p id="bjMessage"></p>
+
+<div class="chips">
+<div class="chip" onclick="selectBet(10)">10</div>
+<div class="chip" onclick="selectBet(50)">50</div>
+<div class="chip" onclick="selectBet(100)">100</div>
+<div class="chip" onclick="selectBet(500)">500</div>
+</div>
+
+<button onclick="startBlackjack()">Deal</button>
+<button onclick="hit()">Hit</button>
+<button onclick="stand()">Stand</button>
+
+</div>
 </div>
 
 <!-- Roulette -->
 <div id="roulette" class="section">
-<h2>Roulette</h2>
-<div id="wheel">🎡</div>
-<button onclick="spinRoulette()">Spin (50 Chips)</button>
-<div id="rouletteResult"></div>
+<div class="panel">
+<h2>European Roulette</h2>
+
+<div class="chips">
+<div class="chip" onclick="selectBet(10)">10</div>
+<div class="chip" onclick="selectBet(50)">50</div>
+<div class="chip" onclick="selectBet(100)">100</div>
+<div class="chip" onclick="selectBet(500)">500</div>
 </div>
 
-<!-- Slots -->
-<div id="slots" class="section">
-<h2>Slots</h2>
-<div class="slot" id="slotDisplay">🍒 🍋 🍊</div>
-<button onclick="spinSlots()">Spin (50 Chips)</button>
-<div id="slotResult"></div>
-</div>
+<button onclick="betColor('red')">Bet Red</button>
+<button onclick="betColor('black')">Bet Black</button>
 
-<!-- Poker -->
-<div id="poker" class="section">
-<h2>Poker</h2>
-<button onclick="playPoker()">Deal (100 Chips)</button>
-<div id="pokerResult"></div>
-</div>
+<br><br>
 
-<!-- Stats -->
-<div id="stats" class="section">
-<h2>Player Stats</h2>
-<p>Wins: <span id="wins">0</span></p>
-<p>Losses: <span id="losses">0</span></p>
-<p>Games Played: <span id="games">0</span></p>
+<input type="number" id="numberBet" min="0" max="36">
+<button onclick="betNumber()">Bet Number</button>
+
+<br><br>
+
+<div id="wheel">0</div>
+<p id="rouletteMessage"></p>
+<button onclick="spinWheel()">SPIN</button>
+
+</div>
 </div>
 
 </div>
 
 <script>
 let chips=localStorage.getItem("chips")?parseInt(localStorage.getItem("chips")):1000;
-let stats=JSON.parse(localStorage.getItem("stats"))||{wins:0,losses:0,games:0};
+let currentBet=0;
+let deck=[],playerHand=[],dealerHand=[],gameActive=false;
+let rouletteBetType=null,rouletteBetValue=null;
 
-function update(){
+const redNumbers=[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
+
+function updateChips(){
     document.getElementById("chips").innerText=chips;
-    document.getElementById("wins").innerText=stats.wins;
-    document.getElementById("losses").innerText=stats.losses;
-    document.getElementById("games").innerText=stats.games;
     localStorage.setItem("chips",chips);
-    localStorage.setItem("stats",JSON.stringify(stats));
 }
 
 function show(id){
@@ -185,63 +253,175 @@ function show(id){
     document.getElementById(id).classList.add("active");
 }
 
-function record(win){
-    stats.games++;
-    if(win){stats.wins++;}else{stats.losses++;}
+function selectBet(amount){
+    currentBet=amount;
+    document.querySelectorAll(".chip").forEach(c=>c.classList.remove("selected"));
+    event.target.classList.add("selected");
 }
 
-function playBJ(){
-    if(chips<50)return alert("Not enough chips");
-    let player=Math.floor(Math.random()*21)+1;
-    let dealer=Math.floor(Math.random()*21)+1;
-    stats.games++;
-    if(player>dealer){chips+=50;stats.wins++;}
-    else{chips-=50;stats.losses++;}
-    document.getElementById("bjArea").innerText="You: "+player+" Dealer: "+dealer;
-    update();
+/* ---------- BLACKJACK ---------- */
+
+function createDeck(){
+    const suits=["♠","♥","♦","♣"];
+    const ranks=["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
+    deck=[];
+    for(let suit of suits){
+        for(let rank of ranks){
+            deck.push({rank,suit});
+        }
+    }
+    deck.sort(()=>Math.random()-0.5);
 }
 
-function spinRoulette(){
-    if(chips<50)return alert("Not enough chips");
+function cardValue(card){
+    if(["J","Q","K"].includes(card.rank)) return 10;
+    if(card.rank==="A") return 11;
+    return parseInt(card.rank);
+}
+
+function handValue(hand){
+    let value=0, aces=0;
+    for(let card of hand){
+        value+=cardValue(card);
+        if(card.rank==="A") aces++;
+    }
+    while(value>21 && aces>0){
+        value-=10;
+        aces--;
+    }
+    return value;
+}
+
+function createCardHTML(card){
+    let color=(card.suit==="♥"||card.suit==="♦")?"red":"black";
+    return `<div class="card ${color}">
+        <div>${card.rank}${card.suit}</div>
+        <div style="align-self:flex-end">${card.rank}${card.suit}</div>
+    </div>`;
+}
+
+function renderHands(){
+    document.getElementById("playerCards").innerHTML=
+        playerHand.map(c=>createCardHTML(c)).join("");
+    document.getElementById("dealerCards").innerHTML=
+        dealerHand.map(c=>createCardHTML(c)).join("");
+}
+
+function startBlackjack(){
+    if(currentBet===0) return alert("Select bet first");
+    if(currentBet>chips) return alert("Not enough chips");
+
+    createDeck();
+    playerHand=[deck.pop(),deck.pop()];
+    dealerHand=[deck.pop(),deck.pop()];
+    gameActive=true;
+    renderHands();
+    document.getElementById("bjMessage").innerText="";
+}
+
+function hit(){
+    if(!gameActive) return;
+    playerHand.push(deck.pop());
+    renderHands();
+    if(handValue(playerHand)>21) endBlackjack();
+}
+
+function stand(){
+    if(!gameActive) return;
+    while(handValue(dealerHand)<17){
+        dealerHand.push(deck.pop());
+    }
+    endBlackjack();
+}
+
+function endBlackjack(){
+    gameActive=false;
+    let p=handValue(playerHand);
+    let d=handValue(dealerHand);
+    let msg="";
+    if(p>21){
+        chips-=currentBet;
+        msg="Bust! Dealer Wins.";
+    }else if(d>21 || p>d){
+        chips+=currentBet;
+        msg="You Win!";
+    }else if(p<d){
+        chips-=currentBet;
+        msg="Dealer Wins.";
+    }else{
+        msg="Push.";
+    }
+    document.getElementById("bjMessage").innerText=
+        msg+" (You: "+p+" Dealer: "+d+")";
+    updateChips();
+}
+
+/* ---------- ROULETTE ---------- */
+
+function betColor(color){
+    if(currentBet===0) return alert("Select bet first");
+    rouletteBetType="color";
+    rouletteBetValue=color;
+    document.getElementById("rouletteMessage").innerText=
+        "Betting "+currentBet+" on "+color;
+}
+
+function betNumber(){
+    if(currentBet===0) return alert("Select bet first");
+    let num=parseInt(document.getElementById("numberBet").value);
+    if(isNaN(num)||num<0||num>36) return alert("Enter 0-36");
+    rouletteBetType="number";
+    rouletteBetValue=num;
+    document.getElementById("rouletteMessage").innerText=
+        "Betting "+currentBet+" on "+num;
+}
+
+function spinWheel(){
+    if(!rouletteBetType) return alert("Place bet first");
+    if(currentBet>chips) return alert("Not enough chips");
+
     let result=Math.floor(Math.random()*37);
-    document.getElementById("wheel").style.transform="rotate("+(360*6+result*10)+"deg)";
+    let rotation=360*6+(result*9.7);
+    document.getElementById("wheel").style.transform=
+        "rotate("+rotation+"deg)";
+
     setTimeout(()=>{
-        if(result%2===0){chips+=50;stats.wins++;}
-        else{chips-=50;stats.losses++;}
-        stats.games++;
-        document.getElementById("rouletteResult").innerText="Number: "+result;
-        update();
-    },3000);
-}
+        let message="Result: "+result;
+        if(rouletteBetType==="color"){
+            let resultColor=
+                redNumbers.includes(result)?"red":
+                (result===0?"green":"black");
 
-function spinSlots(){
-    if(chips<50)return alert("Not enough chips");
-    const symbols=["🍒","🍋","🍊","💎","7️⃣"];
-    let s1=symbols[Math.floor(Math.random()*5)];
-    let s2=symbols[Math.floor(Math.random()*5)];
-    let s3=symbols[Math.floor(Math.random()*5)];
-    document.getElementById("slotDisplay").innerText=s1+" "+s2+" "+s3;
-    stats.games++;
-    if(s1===s2&&s2===s3){chips+=150;stats.wins++;}
-    else{chips-=50;stats.losses++;}
-    update();
-}
-
-function playPoker(){
-    if(chips<100)return alert("Not enough chips");
-    let p=Math.random();
-    stats.games++;
-    if(p>0.5){chips+=100;stats.wins++;}
-    else{chips-=100;stats.losses++;}
-    document.getElementById("pokerResult").innerText="Hand Result Calculated";
-    update();
+            if(resultColor===rouletteBetValue){
+                chips+=currentBet;
+                message+=" — YOU WIN!";
+            }else{
+                chips-=currentBet;
+                message+=" — You lose.";
+            }
+        }
+        if(rouletteBetType==="number"){
+            if(result===rouletteBetValue){
+                chips+=currentBet*35;
+                message+=" — JACKPOT!";
+            }else{
+                chips-=currentBet;
+                message+=" — You lose.";
+            }
+        }
+        document.getElementById("rouletteMessage").innerText=message;
+        document.getElementById("wheel").innerText=result;
+        updateChips();
+        rouletteBetType=null;
+    },4000);
 }
 
 setInterval(()=>{
-    document.getElementById("online").innerText=2400+Math.floor(Math.random()*300);
+    document.getElementById("online").innerText=
+        2400+Math.floor(Math.random()*300);
 },3000);
 
-update();
+updateChips();
 </script>
 
 </body>
