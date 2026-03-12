@@ -1,266 +1,292 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Afriluxe Party</title>
-
+<title>O Level Business Quiz</title>
 <style>
-body{
-    margin:0;
-    font-family:Segoe UI, sans-serif;
-    background:#0f0f0f;
-    color:white;
-    display:flex;
-}
-
-/* Sidebar */
-.sidebar{
-    width:220px;
-    background:#151515;
-    border-right:3px solid #d60000;
-    padding-top:30px;
-}
-.sidebar h2{
-    text-align:center;
-    color:#ff2e2e;
-}
-.sidebar button{
-    width:100%;
-    padding:15px;
-    background:none;
-    border:none;
-    color:#ccc;
-    text-align:left;
-    cursor:pointer;
-    transition:0.3s;
-}
-.sidebar button:hover{
-    background:#d60000;
-    color:white;
-}
-
-/* Main */
-.main{
-    flex:1;
-    padding:40px;
-}
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    border-bottom:1px solid #d60000;
-    padding-bottom:10px;
-    margin-bottom:30px;
-}
-
-.section{display:none; animation:fadeIn 0.4s ease;}
-.active{display:block;}
-
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(10px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-.panel{
-    background:#1a1a1a;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 0 25px rgba(214,0,0,0.3);
-    text-align:center;
-}
-
-/* Chips */
-.chip{
-    display:inline-block;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:radial-gradient(circle,#ff2e2e,#a80000);
-    line-height:60px;
-    text-align:center;
-    margin:10px;
-    cursor:pointer;
-    font-weight:bold;
-}
-.selected{box-shadow:0 0 20px #ff2e2e;}
-
-/* Cards */
-.card{
-    width:80px;
-    height:120px;
-    background:white;
-    border-radius:8px;
-    display:inline-flex;
-    flex-direction:column;
-    justify-content:space-between;
-    padding:8px;
-    margin:10px;
-    font-weight:bold;
-}
-.red{color:#d60000;}
-.black{color:black;}
-
-/* Animations */
-@keyframes winPop{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.15);}
-    100%{transform:scale(1);}
-}
-.win{animation:winPop 0.4s ease;}
-
-@keyframes loseFlash{
-    0%{background:#1a1a1a;}
-    50%{background:#5c0000;}
-    100%{background:#1a1a1a;}
-}
-.lose{animation:loseFlash 0.4s ease;}
-
-#wheel{
-    width:220px;
-    height:220px;
-    border-radius:50%;
-    border:6px solid #ff2e2e;
-    margin:20px auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:transform 4s cubic-bezier(.17,.67,.83,.67);
-    background:conic-gradient(green 0deg 10deg,#d60000 10deg 20deg,black 20deg 30deg,#d60000 30deg 40deg,black 40deg 50deg,#d60000 50deg 60deg,black 60deg 70deg,#d60000 70deg 80deg,black 80deg 90deg,#d60000 90deg 100deg,black 100deg 110deg,#d60000 110deg 120deg,black 120deg 130deg,#d60000 130deg 140deg,black 140deg 150deg,#d60000 150deg 160deg,black 160deg 170deg,#d60000 170deg 180deg,black 180deg 190deg,#d60000 190deg 200deg,black 200deg 210deg,#d60000 210deg 220deg,black 220deg 230deg,#d60000 230deg 240deg,black 240deg 250deg,#d60000 250deg 260deg,black 260deg 270deg,#d60000 270deg 280deg,black 280deg 290deg,#d60000 290deg 300deg,black 300deg 310deg,#d60000 310deg 320deg,black 320deg 330deg,#d60000 330deg 340deg,black 340deg 350deg,#d60000 350deg 360deg);
-}
-
-#plinkoBoard{
-    position:relative;
-    width:300px;
-    height:400px;
-    margin:20px auto;
-    background:#111;
-    border-radius:12px;
-    overflow:hidden;
-}
-#ball{
-    width:15px;
-    height:15px;
-    background:#ff2e2e;
-    border-radius:50%;
-    position:absolute;
-    top:0;
-    left:142px;
-    display:none;
-}
+body {font-family: Arial; margin: 40px; background:#f4f4f4;}
+h1 {color:#2c3e50;}
+.question {margin-bottom:20px; padding:10px; background:white; border-radius:5px;}
+button {padding:10px 20px; font-size:16px;}
 </style>
 </head>
 
 <body>
 
-<div class="sidebar">
-<h2>AFRILUXE</h2>
-<button onclick="show('blackjack')">Blackjack</button>
-<button onclick="show('roulette')">Roulette</button>
-<button onclick="show('plinko')">Plinko</button>
+<h1>O Level Business Studies Quiz (Sections 1 & 2)</h1>
+
+<form id="quizForm">
+
+<div class="question">
+1. What is a business?
+<br><input type="radio" name="q1" value="a"> An organisation that produces goods and services to satisfy needs
+<br><input type="radio" name="q1" value="b"> A charity organisation
+<br><input type="radio" name="q1" value="c"> A government department
+<br><input type="radio" name="q1" value="d"> A school
 </div>
 
-<div class="main">
-
-<div class="topbar">
-<div>Chips: <span id="chips">1000</span></div>
+<div class="question">
+2. Which sector extracts natural resources?
+<br><input type="radio" name="q2" value="a"> Secondary
+<br><input type="radio" name="q2" value="b"> Primary
+<br><input type="radio" name="q2" value="c"> Tertiary
+<br><input type="radio" name="q2" value="d"> Quaternary
 </div>
 
-<!-- Blackjack -->
-<div id="blackjack" class="section active">
-<div class="panel">
-<h2>Blackjack</h2>
-<div class="chip" onclick="selectBet(50)">50</div>
-<button onclick="blackjack()">Play</button>
-<p id="bjResult"></p>
-</div>
+<div class="question">
+3. Which sector manufactures goods?
+<br><input type="radio" name="q3" value="a"> Primary
+<br><input type="radio" name="q3" value="b"> Secondary
+<br><input type="radio" name="q3" value="c"> Tertiary
+<br><input type="radio" name="q3" value="d"> None
 </div>
 
-<!-- Roulette -->
-<div id="roulette" class="section">
-<div class="panel">
-<h2>Roulette</h2>
-<div class="chip" onclick="selectBet(50)">50</div>
-<button onclick="spin()">Spin</button>
-<div id="wheel">0</div>
-<p id="rResult"></p>
-</div>
+<div class="question">
+4. What does GDP measure?
+<br><input type="radio" name="q4" value="a"> Total value of goods and services produced in a country
+<br><input type="radio" name="q4" value="b"> Population
+<br><input type="radio" name="q4" value="c"> Number of businesses
+<br><input type="radio" name="q4" value="d"> Taxes
 </div>
 
-<!-- Plinko -->
-<div id="plinko" class="section">
-<div class="panel">
-<h2>Plinko Party 🎯</h2>
-<div class="chip" onclick="selectBet(50)">50</div>
-<button onclick="dropBall()">Drop Ball</button>
-<div id="plinkoBoard">
-<div id="ball"></div>
-</div>
-<p id="plinkoResult"></p>
-</div>
+<div class="question">
+5. What is specialization?
+<br><input type="radio" name="q5" value="a"> Doing many jobs
+<br><input type="radio" name="q5" value="b"> Focusing on one specific task
+<br><input type="radio" name="q5" value="c"> Selling products
+<br><input type="radio" name="q5" value="d"> Buying goods
 </div>
 
+<div class="question">
+6. Which is an example of tertiary sector?
+<br><input type="radio" name="q6" value="a"> Farming
+<br><input type="radio" name="q6" value="b"> Mining
+<br><input type="radio" name="q6" value="c"> Banking
+<br><input type="radio" name="q6" value="d"> Manufacturing
 </div>
+
+<div class="question">
+7. What is a sole trader?
+<br><input type="radio" name="q7" value="a"> A business owned by one person
+<br><input type="radio" name="q7" value="b"> A company with many owners
+<br><input type="radio" name="q7" value="c"> A government business
+<br><input type="radio" name="q7" value="d"> A charity
+</div>
+
+<div class="question">
+8. Which is a business objective?
+<br><input type="radio" name="q8" value="a"> Make profit
+<br><input type="radio" name="q8" value="b"> Waste money
+<br><input type="radio" name="q8" value="c"> Lose customers
+<br><input type="radio" name="q8" value="d"> Close the business
+</div>
+
+<div class="question">
+9. Who are stakeholders?
+<br><input type="radio" name="q9" value="a"> People interested in the business
+<br><input type="radio" name="q9" value="b"> Only workers
+<br><input type="radio" name="q9" value="c"> Only owners
+<br><input type="radio" name="q9" value="d"> Only customers
+</div>
+
+<div class="question">
+10. Which is an example of internal stakeholder?
+<br><input type="radio" name="q10" value="a"> Employees
+<br><input type="radio" name="q10" value="b"> Government
+<br><input type="radio" name="q10" value="c"> Customers
+<br><input type="radio" name="q10" value="d"> Suppliers
+</div>
+
+<div class="question">
+11. Motivation means:
+<br><input type="radio" name="q11" value="a"> Encouraging workers to work well
+<br><input type="radio" name="q11" value="b"> Punishing workers
+<br><input type="radio" name="q11" value="c"> Hiring workers
+<br><input type="radio" name="q11" value="d"> Firing workers
+</div>
+
+<div class="question">
+12. Which is a financial motivator?
+<br><input type="radio" name="q12" value="a"> Bonus
+<br><input type="radio" name="q12" value="b"> Praise
+<br><input type="radio" name="q12" value="c"> Promotion
+<br><input type="radio" name="q12" value="d"> Job satisfaction
+</div>
+
+<div class="question">
+13. Which is a non-financial motivator?
+<br><input type="radio" name="q13" value="a"> Bonus
+<br><input type="radio" name="q13" value="b"> Commission
+<br><input type="radio" name="q13" value="c"> Job satisfaction
+<br><input type="radio" name="q13" value="d"> Wage
+</div>
+
+<div class="question">
+14. What is recruitment?
+<br><input type="radio" name="q14" value="a"> Finding new employees
+<br><input type="radio" name="q14" value="b"> Training workers
+<br><input type="radio" name="q14" value="c"> Paying workers
+<br><input type="radio" name="q14" value="d"> Promoting workers
+</div>
+
+<div class="question">
+15. What is training?
+<br><input type="radio" name="q15" value="a"> Teaching workers skills
+<br><input type="radio" name="q15" value="b"> Hiring workers
+<br><input type="radio" name="q15" value="c"> Firing workers
+<br><input type="radio" name="q15" value="d"> Advertising jobs
+</div>
+
+<div class="question">
+16. Which communication is inside the business?
+<br><input type="radio" name="q16" value="a"> Internal communication
+<br><input type="radio" name="q16" value="b"> External communication
+<br><input type="radio" name="q16" value="c"> Mass communication
+<br><input type="radio" name="q16" value="d"> Public communication
+</div>
+
+<div class="question">
+17. Which is external communication?
+<br><input type="radio" name="q17" value="a"> Talking to customers
+<br><input type="radio" name="q17" value="b"> Talking to employees
+<br><input type="radio" name="q17" value="c"> Talking to managers
+<br><input type="radio" name="q17" value="d"> Internal meetings
+</div>
+
+<div class="question">
+18. What does a manager do?
+<br><input type="radio" name="q18" value="a"> Organises and controls workers
+<br><input type="radio" name="q18" value="b"> Only sells products
+<br><input type="radio" name="q18" value="c"> Only buys products
+<br><input type="radio" name="q18" value="d"> Only cleans offices
+</div>
+
+<div class="question">
+19. What is delegation?
+<br><input type="radio" name="q19" value="a"> Passing tasks to employees
+<br><input type="radio" name="q19" value="b"> Hiring workers
+<br><input type="radio" name="q19" value="c"> Firing workers
+<br><input type="radio" name="q19" value="d"> Paying workers
+</div>
+
+<div class="question">
+20. Which improves worker motivation?
+<br><input type="radio" name="q20" value="a"> Higher wages
+<br><input type="radio" name="q20" value="b"> Longer hours
+<br><input type="radio" name="q20" value="c"> Less pay
+<br><input type="radio" name="q20" value="d"> No training
+</div>
+
+<div class="question">
+21. What is a partnership?
+<br><input type="radio" name="q21" value="a"> Business owned by 2-20 people
+<br><input type="radio" name="q21" value="b"> One owner
+<br><input type="radio" name="q21" value="c"> Government business
+<br><input type="radio" name="q21" value="d"> Charity
+</div>
+
+<div class="question">
+22. What is limited liability?
+<br><input type="radio" name="q22" value="a"> Owners only lose what they invested
+<br><input type="radio" name="q22" value="b"> Owners lose everything
+<br><input type="radio" name="q22" value="c"> Workers lose money
+<br><input type="radio" name="q22" value="d"> Customers lose money
+</div>
+
+<div class="question">
+23. Which is an example of training?
+<br><input type="radio" name="q23" value="a"> Teaching workers how to use machines
+<br><input type="radio" name="q23" value="b"> Advertising products
+<br><input type="radio" name="q23" value="c"> Paying workers
+<br><input type="radio" name="q23" value="d"> Selling products
+</div>
+
+<div class="question">
+24. Which helps communication in business?
+<br><input type="radio" name="q24" value="a"> Email
+<br><input type="radio" name="q24" value="b"> Ignoring workers
+<br><input type="radio" name="q24" value="c"> Silence
+<br><input type="radio" name="q24" value="d"> Confusion
+</div>
+
+<div class="question">
+25. What is job satisfaction?
+<br><input type="radio" name="q25" value="a"> Workers enjoy their job
+<br><input type="radio" name="q25" value="b"> Workers hate job
+<br><input type="radio" name="q25" value="c"> Workers quit
+<br><input type="radio" name="q25" value="d"> Workers sleep
+</div>
+
+<div class="question">
+26. What does HR department manage?
+<br><input type="radio" name="q26" value="a"> Employees
+<br><input type="radio" name="q26" value="b"> Machines
+<br><input type="radio" name="q26" value="c"> Customers
+<br><input type="radio" name="q26" value="d"> Buildings
+</div>
+
+<div class="question">
+27. What improves worker skills?
+<br><input type="radio" name="q27" value="a"> Training
+<br><input type="radio" name="q27" value="b"> Punishment
+<br><input type="radio" name="q27" value="c"> Less pay
+<br><input type="radio" name="q27" value="d"> Ignoring workers
+</div>
+
+<div class="question">
+28. Which is internal communication?
+<br><input type="radio" name="q28" value="a"> Manager emailing employees
+<br><input type="radio" name="q28" value="b"> Advertising
+<br><input type="radio" name="q28" value="c"> Talking to customers
+<br><input type="radio" name="q28" value="d"> Talking to suppliers
+</div>
+
+<div class="question">
+29. What does organisation mean?
+<br><input type="radio" name="q29" value="a"> Arranging tasks and workers
+<br><input type="radio" name="q29" value="b"> Buying products
+<br><input type="radio" name="q29" value="c"> Selling products
+<br><input type="radio" name="q29" value="d"> Advertising
+</div>
+
+<div class="question">
+30. Why motivate workers?
+<br><input type="radio" name="q30" value="a"> Increase productivity
+<br><input type="radio" name="q30" value="b"> Reduce work
+<br><input type="radio" name="q30" value="c"> Lose profit
+<br><input type="radio" name="q30" value="d"> Close business
+</div>
+
+<button type="button" onclick="checkAnswers()">Submit Quiz</button>
+
+</form>
+
+<h2 id="result"></h2>
 
 <script>
-let chips=1000;
-let bet=0;
-const winSound=new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
-const loseSound=new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+function checkAnswers() {
 
-function show(id){
-    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
+let answers = {
+q1:"a",q2:"b",q3:"b",q4:"a",q5:"b",
+q6:"c",q7:"a",q8:"a",q9:"a",q10:"a",
+q11:"a",q12:"a",q13:"c",q14:"a",q15:"a",
+q16:"a",q17:"a",q18:"a",q19:"a",q20:"a",
+q21:"a",q22:"a",q23:"a",q24:"a",q25:"a",
+q26:"a",q27:"a",q28:"a",q29:"a",q30:"a"
+};
+
+let score = 0;
+
+for(let q in answers){
+let options = document.getElementsByName(q);
+for(let option of options){
+if(option.checked && option.value === answers[q]){
+score++;
+}
+}
 }
 
-function selectBet(amount){
-    bet=amount;
-    document.querySelectorAll(".chip").forEach(c=>c.classList.remove("selected"));
-    event.target.classList.add("selected");
-}
+document.getElementById("result").innerHTML = "Your Score: " + score + " / 30";
 
-function blackjack(){
-    let win=Math.random()>0.5;
-    if(win){chips+=bet; winSound.play(); flash("win");}
-    else{chips-=bet; loseSound.play(); flash("lose");}
-    document.getElementById("chips").innerText=chips;
-    document.getElementById("bjResult").innerText=win?"You Win!":"You Lose!";
-}
-
-function spin(){
-    let result=Math.floor(Math.random()*37);
-    document.getElementById("wheel").style.transform="rotate("+(360*5+result*9)+"deg)";
-    setTimeout(()=>{document.getElementById("wheel").innerText=result;},4000);
-}
-
-function dropBall(){
-    const ball=document.getElementById("ball");
-    ball.style.display="block";
-    let x=142,y=0;
-    let interval=setInterval(()=>{
-        y+=10;
-        x+=Math.random()>0.5?10:-10;
-        if(x<0)x=0;
-        if(x>285)x=285;
-        ball.style.top=y+"px";
-        ball.style.left=x+"px";
-        if(y>=360){
-            clearInterval(interval);
-            let multiplier=(x>120&&x<180)?2:1;
-            let win=bet*multiplier;
-            chips+=win;
-            document.getElementById("chips").innerText=chips;
-            document.getElementById("plinkoResult").innerText="Won "+win+" chips!";
-            winSound.play();
-            setTimeout(()=>{ball.style.display="none";ball.style.top="0px";ball.style.left="142px";},800);
-        }
-    },60);
-}
-
-function flash(type){
-    const panel=document.querySelector(".panel");
-    panel.classList.add(type);
-    setTimeout(()=>panel.classList.remove(type),400);
 }
 </script>
 
